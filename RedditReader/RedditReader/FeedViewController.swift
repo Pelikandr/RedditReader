@@ -11,7 +11,9 @@ import UIKit
 class FeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+
+    let apiManager = APIManager()
+
     private let adapter = FeedAdapter()
     
     override func viewDidLoad() {
@@ -21,7 +23,15 @@ class FeedViewController: UIViewController {
         
         tableView.estimatedRowHeight = 400
 
-
+        apiManager.getFeedData() { (items: [FeedItem]?, error: Error?) in
+            if let error = error {
+                print("ERROR: \(error.localizedDescription)")
+            } else if let feedItems = items {
+                print("DATA: \(feedItems.count) count")
+            } else {
+                print("ERROR: Unknown")
+            }
+        }
     }
 
 
