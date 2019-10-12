@@ -13,7 +13,6 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let apiManager = APIManager()
-
     private let adapter = FeedAdapter()
     
     override func viewDidLoad() {

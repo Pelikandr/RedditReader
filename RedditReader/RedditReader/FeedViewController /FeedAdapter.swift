@@ -10,8 +10,6 @@ import UIKit
 
 class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -27,5 +25,4 @@ class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-
 }

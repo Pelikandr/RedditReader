@@ -8,21 +8,10 @@
 
 import Foundation
 
-struct FeedItem: Decodable {
+struct FeedItem {
     let title: String
     let author: String
     let createdDate: Float
     let commentsNumber: Int
     let thumbnail: String
-
-    enum CodingKeys: String, CodingKey {
-        case title
-        case author
-        case createdDate = "created"
-        case commentsNumber = "num_comments"
-        case thumbnail
-    }
-
-    init(from decoder: Decoder) throws {
-    }
 }

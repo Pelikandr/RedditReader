@@ -7,25 +7,23 @@
 //
 
 import Foundation
+import Alamofire
 
 class APIManager {
 
-//    var onRecieve: ((FeedItem) -> Void)?
+    //var onRecieve: (([FeedItem]?) -> Void)?
+    let dataParser = DataParser()
 
     func getFeedData(completion: ((_ data: [FeedItem]?, _ error: Error?) -> Void)?) {
-
-    if let url = URL(string: "https://www.reddit.com/top.json") {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-                let jsonDecoder = JSONDecoder()
-                do {
-                    let data = try jsonDecoder.decode(<#T.Type#>)
-//                let feedItems: [FeedItem] = try jsonDecoder.decode([FeedItem].self, from: data!)
-//                    completion?(feedItems, nil)
-                    } catch {
-                        print(error.localizedDescription)
-                        completion?(nil, error)
-                    }
-            }.resume()
+        var feedItems: [FeedItem]?
+        request("https://www.reddit.com/top.json").validate().responseJSON { responseJson in
+            switch responseJson.result {
+            case .success(let value):
+                feedItems = self.dataParser.parse(value)
+            case .failure(let error):
+                print(error)
+            }
+            completion!(feedItems, nil)
         }
     }
 
