@@ -7,21 +7,30 @@
 //
 
 import UIKit
+import Alamofire
 
 class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
+    
+    var data = [FeedItem]()
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = data[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedCell
-        cell.titleLabel.text = "Artificially grown human organs are seen by many as the \"holy grail\" for resolving organ shortage. A new sacrificial ink-writing technique from Harvard allows 3D printing of large, vascularized human organ building blocks, yielding viable, organ-specific tissues with high cell density and function."
-        cell.titleLabel.sizeToFit()
-        cell.layer.cornerRadius = 2
-        cell.postImage.image = UIImage(named: "sample")
-        cell.postImage.sizeToFit()
-        cell.layer.cornerRadius = 4
+        
+        cell.titleLabel.text = item.title
+        cell.authorCreatedLabel?.text = item.author
+        cell.numCommentsLabel?.text = String(item.commentsNumber)
+//        request(item.thumbnail).responseData { response in
+//            cell.imageView!.image = UIImage(data: response.data!, scale: 1)
+//            print(UIImage(data: response.data!))
+//        }
+        cell.postImage.image = item.thumbnailImage
+        print(item.thumbnailImage)
+        //cell.postImage.sizeToFit()
         return cell
     }
     

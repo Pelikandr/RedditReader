@@ -19,19 +19,34 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = adapter
         tableView.dataSource = adapter
-        
-        tableView.estimatedRowHeight = 400
-
         apiManager.getFeedData() { (items: [FeedItem]?, error: Error?) in
             if let error = error {
                 print("ERROR: \(error.localizedDescription)")
             } else if let feedItems = items {
+                self.adapter.data = feedItems
+                self.tableView.reloadData()
                 print("DATA: \(feedItems.count) count")
             } else {
                 print("ERROR: Unknown")
             }
         }
+        tableView.estimatedRowHeight = 400
+        
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        
+//        apiManager.getFeedData() { (items: [FeedItem]?, error: Error?) in
+//            if let error = error {
+//                print("ERROR: \(error.localizedDescription)")
+//            } else if let feedItems = items {
+//                self.adapter.data = feedItems
+//                self.tableView.reloadData()
+//                print("DATA: \(feedItems.count) count")
+//            } else {
+//                print("ERROR: Unknown")
+//            }
+//        }
+//    }
 
 
 }

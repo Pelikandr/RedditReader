@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct FeedItem {
     let title: String
@@ -14,4 +15,5 @@ struct FeedItem {
     let createdDate: Float
     let commentsNumber: Int
     let thumbnail: String
+    let thumbnailImage: UIImage?
 }

@@ -20,11 +20,25 @@ class APIManager {
             switch responseJson.result {
             case .success(let value):
                 feedItems = self.dataParser.parse(value)
+                completion!(feedItems, nil)
             case .failure(let error):
+                completion!(nil, error)
                 print(error)
             }
-            completion!(feedItems, nil)
         }
     }
-
+    
+//    func getThumbnail(url: String, completion: ((_ image: UIImage?, _ error: Error?) -> Void)?) {
+//        request(url).validate().responseData { responseData in
+//            switch responseData.result {
+//            case .success(let data):
+//                guard let thumbnail = UIImage(data: data) else { return }
+//                print(thumbnail)
+//                completion!(thumbnail, nil)
+//            case .failure(let error):
+//                completion!(nil, error)
+//                print(error)
+//            }
+//        }
+//    }
 }
