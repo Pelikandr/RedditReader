@@ -8,4 +8,5 @@ target 'RedditReader' do
   # Pods for RedditReader
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'SDWebImage'
 end

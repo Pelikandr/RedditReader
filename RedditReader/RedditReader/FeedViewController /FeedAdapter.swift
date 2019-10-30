@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SDWebImage
 
 class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,13 +25,7 @@ class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = item.title
         cell.authorCreatedLabel?.text = item.author
         cell.numCommentsLabel?.text = String(item.commentsNumber)
-//        request(item.thumbnail).responseData { response in
-//            cell.imageView!.image = UIImage(data: response.data!, scale: 1)
-//            print(UIImage(data: response.data!))
-//        }
-        cell.postImage.image = item.thumbnailImage
-        print(item.thumbnailImage)
-        //cell.postImage.sizeToFit()
+        cell.postImage.sd_setImage(with: URL(string: item.thumbnail), placeholderImage: UIImage(named: "sample"))
         return cell
     }
     

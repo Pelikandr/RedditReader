@@ -15,5 +15,4 @@ struct FeedItem {
     let createdDate: Float
     let commentsNumber: Int
     let thumbnail: String
-    let thumbnailImage: UIImage?
 }
